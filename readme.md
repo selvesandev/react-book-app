@@ -19,4 +19,4 @@ Install Babel Dependencies
 * jsx file (contains description of what all components we want to display on our webpage and how they'll behave)
 
 
-![webpack.config.js](https://raw.githubusercontent.com/selvesadev/react-book-app/master/doc-img/webpack.png)
+![webpack.config.js](https://github.com/selvesandev/react-book-app/blob/master/doc-img/webpack.png)

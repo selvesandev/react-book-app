@@ -3,6 +3,13 @@ import {Container, FormControl, FormGroup, InputGroup, Glyphicon} from 'react-bo
 
 
 class Global extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            query: '',
+        };
+    }
+
     render() {
         return (
             <div className="container">
@@ -10,7 +17,15 @@ class Global extends Component {
                 <h1>Book Explorer</h1>
                 <FormGroup>
                     <InputGroup>
-                        <FormControl placeholder="Search for a book" type="text"/>
+                        <FormControl onChange={event => this.setState({query: event.target.value})}
+                                     placeholder="Search for a book"
+                                     type="text"
+                                     onKeyPress={event => {
+                                         if (event.key == 'Enter') {
+                                             this.search();
+                                         }
+                                     }}
+                        />
                         <InputGroup.Addon onClick={() => this.search()}>
                             <Glyphicon glyph="search"></Glyphicon>
                         </InputGroup.Addon>
@@ -21,7 +36,10 @@ class Global extends Component {
     }
 
     search() {
-        console.log('searching....');
+        const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
+        fetch(`${BASE_URL}${this.state.query}`, {method: 'GET'})
+            .then(response => response.json())
+            .then(json => console.log(json));
     }
 }
 

@@ -65,3 +65,40 @@ Import the global component in our entry point `script.jsx`
 import Global from './components/global.jsx';
 ReactDom.render(<Global/>, document.getElementById('root'));
 ```
+
+## State
+Simply refers to the idea that the data is particular to a react component.
+As the user interacts with the component the state updates and shows relevant component changes
+based on that updating state and incoming data.   
+In order to acknowledge the user typed input.  
+
+```javascript
+
+class Global extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            query: ''
+        };
+    }
+    render() {
+        return (
+                <FormControl 
+                onChange={event => this.setState({query: event.target.value})} 
+                placeholder="Search for a book" 
+                type="text"/>
+            )
+    }
+    
+    search() {
+      console.log(this.state.query);
+    }
+}
+
+```
+
+
+## Book Explorer
+Using google Books API.  
+https://developers.google.com/books/  

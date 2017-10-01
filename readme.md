@@ -102,3 +102,59 @@ class Global extends Component {
 ## Book Explorer
 Using google Books API.  
 https://developers.google.com/books/  
+
+```javascript
+
+search() {
+     const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
+     fetch(`${BASE_URL}${this.state.query}`, {method: 'GET'})
+       .then(response => response.json())
+       .then(json => console.log(json));
+}    
+```
+
+#### Gallery Component 
+Create a gallery components to display all the books that were fetched.
+Which will be the child component used by the main Global Component and the data `item` will
+be passed with the prop attribute.  
+
+Global.jsx
+```javascript
+ <Gallery items={this.state.items}/>
+```
+
+Gallery.jsx
+```javascript
+
+import React, {Component} from 'react';
+
+class Gallery extends Component {
+    render() {
+        let notFound = 'https://mosaikweb.com/wp-content/plugins/lightbox/images/No-image-found.jpg';
+        return (
+            <div>
+                {
+                    this.props.items.map((item, index) => {
+                        let {title, imageLinks, infoLinks} = item.volumeInfo;
+                        return (
+                            <div key={index} className="book">
+                                <img
+                                    src={imageLinks !== undefined ? imageLinks.thumbnail : notFound}
+                                    alt="Book Image"
+                                    className="book-image"
+                                />
+                                <div className="book-text">
+                                    {title}
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        );
+    }
+}
+
+export default Gallery;
+
+```

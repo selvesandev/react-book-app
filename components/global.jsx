@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container,FormControl, FormGroup, InputGroup, Glyphicon} from 'react-bootstrap';
+import {Container, FormControl, FormGroup, InputGroup, Glyphicon} from 'react-bootstrap';
 
 
 class Global extends Component {
@@ -10,14 +10,18 @@ class Global extends Component {
                 <h1>Book Explorer</h1>
                 <FormGroup>
                     <InputGroup>
-                        <FormControl placeholder="Search for a book" type="text" />
-                        <InputGroup.Addon>
+                        <FormControl placeholder="Search for a book" type="text"/>
+                        <InputGroup.Addon onClick={() => this.search()}>
                             <Glyphicon glyph="search"></Glyphicon>
                         </InputGroup.Addon>
                     </InputGroup>
                 </FormGroup>
             </div>
         );
+    }
+
+    search() {
+        console.log('searching....');
     }
 }
 

@@ -1,12 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import Global from './components/global.jsx';
 
-class MyComponent extends React.Component {
-    render() {
-        return (
-            <h2>Hello world</h2>
-        );
-    }
-}
 
-ReactDom.render(<MyComponent/>, document.getElementById('content'));
+ReactDom.render(<Global/>, document.getElementById('root'));
+//ReactDom.render(<div><h1>Hello World!</h1></div>, document.getElementById('root'));
